@@ -38,11 +38,9 @@
         <td th:text="${vendor.bankAccount3}"></td>
         <td th:text="${vendor.additionalInformation}"></td>
         <td>
-            <a th:href="@{/vendor/updateVendor/{id} (id=${vendor.id})}">Update</a>
+            <a th:href="@{/vendor/profile/{id} (id=${vendor.id})}">Vendor Profile</a>
         </td>
-        <td>
-            <a th:href="@{/vendor/delete/{id} (id=${vendor.id})}">Delete</a>
-        </td>
+
     </tr>
     </tbody>
 </table>

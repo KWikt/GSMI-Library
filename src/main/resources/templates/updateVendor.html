@@ -5,8 +5,8 @@
     <title>Create Vendor</title>
 </head>
 <body>
+<a th:action="@{/vendor/profile/{id}(id=${vendor.id})}" >Back</a>
 <h1>Create Vendor</h1>
-<a href="index">Back</a>
 
 <form th:action="@{/vendor/updateVendor/{id}(id=${vendor.id})}" th:object="${vendor}" method="post">
     <input type="hidden" th:field="*{id}" />

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor Profile</title>
+</head>
+<body>
+<a href="/vendorList">Back</a>
+<a th:href="@{/vendor/updateVendor/{id} (id=${vendor.id})}"> Edit Vendor</a>
+
+<h1 th:text="${vendor.companyName}">Vendor Company Name</h1>
+
+<div>
+    <div style="float: left; width: 50%;">
+        <label>Company Name:</label>
+        <p th:text="${vendor.companyName}">Company Name Information</p>
+
+        <label>Address:</label>
+        <p th:text="${vendor.address}">Address Information</p>
+
+        <label>Email:</label>
+        <p th:text="${vendor.email}">Email Information</p>
+
+        <label>Bank Account 1:</label>
+        <p th:text="${vendor.bankAccount1}">Bank Account 1 Information</p>
+
+        <label>Bank Account 3:</label>
+        <p th:text="${vendor.bankAccount3}">Bank Account 3 Information</p>
+    </div>
+
+    <div style="float: left; width: 50%;">
+        <label>VAT Number:</label>
+        <p th:text="${vendor.vatNumber}">VAT Number Information</p>
+
+        <label>City:</label>
+        <p th:text="${vendor.city}">City Information</p>
+
+        <label>Phone Number:</label>
+        <p th:text="${vendor.phone}">Phone Number Information</p>
+
+        <label>Bank Account 2:</label>
+        <p th:text="${vendor.bankAccount2}">Bank Account 2 Information</p>
+
+        <label>Additional Information:</label>
+        <p th:text="${vendor.additionalInformation}">Additional Information</p>
+    </div>
+</div>
+
+<div style="clear: both">
+    <table border="2">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Invoice Number</th>
+            <th>Document Type</th>
+            <th>Gross Amount</th>
+            <th>VAT Amount</th>
+            <th>Invoice Date</th>
+            <th>Due Date</th>
+            <th>Payment Date</th>
+            <th>Payment Status</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="inv : ${invoices}">
+            <td th:text="${inv.id}"></td>
+            <td th:text="${inv.invoiceNumber}"></td>
+            <td th:text="${inv.documentType}"></td>
+            <td th:text="${inv.grossAmount}"></td>
+            <td th:text="${inv.vatAmount}"></td>
+            <td th:text="${#dates.format(inv.invoiceDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(inv.dueDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${#dates.format(inv.paymentDate, 'yyyy-MM-dd')}"></td>
+            <td th:text="${inv.paymentStatus}"></td>
+            <td th:text="${inv.notes}"></td>
+            <td>
+                <a th:href="@{/invoice/updateInvoice/{id} (id=${inv.id})}">Update Invoice</a>
+
+            </td>
+            <td>
+                <a th:href="@{/invoice/delete/{id} (id=${inv.id})}">Delete Invoice</a>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

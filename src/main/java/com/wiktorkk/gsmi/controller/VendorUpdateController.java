@@ -23,6 +23,7 @@ public class VendorUpdateController {
     @Autowired
     InvoiceService invoiceService;
 
+
     @GetMapping("/vendor/updateVendor/{id}")
     public String start(@PathVariable long id, Model model) {
         Vendor vendor = vendorService.getVendorById(id);
@@ -39,6 +40,6 @@ public class VendorUpdateController {
             }
         }
         vendorService.updateVendor(id, vendor);
-        return "redirect:/index";
+        return "redirect:/vendor/profile/" + vendor.getId().toString();
     }
 }

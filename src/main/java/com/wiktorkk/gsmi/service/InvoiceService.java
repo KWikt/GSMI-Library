@@ -39,6 +39,8 @@ public class InvoiceService {
         List<Invoice> invoices = invoiceDao.findAll();
         List<Invoice> invoicesByVendor = new ArrayList<Invoice>();
         for (Invoice invoice : invoices) {
+            System.out.println(invoice.getVendorID());
+            System.out.println(id);
             if (invoice.getVendorID() == id) {
                 invoicesByVendor.add(invoice);
             }
