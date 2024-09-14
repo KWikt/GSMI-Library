@@ -1,8 +1,6 @@
 package com.wiktorkk.gsmi.model;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.sql.Date;
 

@@ -6,7 +6,9 @@
 </head>
 <body>
 <h1>Update Invoice</h1>
-<a href="index" >Back</a>
+<a href="/index" >Back</a>
+<a th:href="@{/invoice/delete/{id} (id=${inv.id})}">Delete Invoice</a>
+
 
 <form th:action="@{/invoice/updateInvoice/{id}(id=${invoice.id})}" th:object="${invoice}" method="post">
     <input type="hidden" th:field="*{id}" />
