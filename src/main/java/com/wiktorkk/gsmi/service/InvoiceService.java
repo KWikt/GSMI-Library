@@ -14,9 +14,6 @@ public class InvoiceService {
     @Autowired
     private InvoiceDao invoiceDao;
 
-    public List<Invoice> getInvoices() {
-        return invoiceDao.findAll();
-    }
 
     public void save(Invoice invoice) {
         invoiceDao.save(invoice);
@@ -36,7 +33,7 @@ public class InvoiceService {
 
     public List<Invoice> getAllInvoiceByUser(long userId) {
         List<Invoice> invoices = invoiceDao.findAll();
-        List<Invoice> invoicesByVendor = new ArrayList<Invoice>();
+        List<Invoice> invoicesByVendor = new ArrayList<>();
 
         for (Invoice invoice : invoices) {
             if(invoice.getUser().getId() == userId) {
@@ -48,7 +45,7 @@ public class InvoiceService {
 
     public List<Invoice> findAllInvoiceByVendorID(Long id) {
         List<Invoice> invoices = invoiceDao.findAll();
-        List<Invoice> invoicesByVendor = new ArrayList<Invoice>();
+        List<Invoice> invoicesByVendor = new ArrayList<>();
         for (Invoice invoice : invoices) {
             if (invoice.getVendorID() == id) {
                 invoicesByVendor.add(invoice);

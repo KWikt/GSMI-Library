@@ -2,8 +2,6 @@ package com.wiktorkk.gsmi.model;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
-
 @Entity
 public class Vendor {
 
