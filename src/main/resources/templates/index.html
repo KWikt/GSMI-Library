@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice List</title>
+</head>
+<body>
+<a href="login" >Log out</a>
+<a href="invoice" >Create Invoice</a>
+<a href="vendor" >Create Vendor</a>
+
+<h1>List of Invoices</h1>
+
+<table border="2">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Vendor Name</th>
+        <th>Invoice Number</th>
+        <th>Document Type</th>
+        <th>Gross Amount</th>
+        <th>VAT Amount</th>
+        <th>Invoice Date</th>
+        <th>Due Date</th>
+        <th>Payment Date</th>
+        <th>Payment Status</th>
+        <th>Notes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of invoices -->
+    <tr th:each="inv : ${invoices}">
+        <td th:text="${inv.id}"></td>
+        <td th:text="${inv.vendorName}"></td>
+        <td th:text="${inv.invoiceNumber}"></td>
+        <td th:text="${inv.documentType}"></td>
+        <td th:text="${inv.grossAmount}"></td>
+        <td th:text="${inv.vatAmount}"></td>
+        <td th:text="${#dates.format(inv.invoiceDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(inv.dueDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(inv.paymentDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${inv.paymentStatus}"></td>
+        <td th:text="${inv.notes}"></td>
+        <td>
+            <a th:href="@{/invoice/updateInvoice/{id} (id=${inv.id})}">Update Invoice</a>
+
+        </td>
+        <td>
+            <a th:href="@{/invoice/delete/{id} (id=${inv.id})}">Delete Invoice</a>
+
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
