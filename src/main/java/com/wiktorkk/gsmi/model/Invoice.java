@@ -1,6 +1,8 @@
 package com.wiktorkk.gsmi.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.sql.Date;
 
@@ -23,6 +25,7 @@ public class Invoice {
     private String paymentStatus;
     private String notes;
 
+    private Long VendorID;
 
     public Invoice() {
     }
@@ -41,6 +44,14 @@ public class Invoice {
         this.notes = notes;
     }
 
+
+    public Long getVendorID() {
+        return VendorID;
+    }
+
+    public void setVendorID(Long vendorID) {
+        VendorID = vendorID;
+    }
 
     public long getId() {
         return id;

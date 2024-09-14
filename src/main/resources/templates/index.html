@@ -8,6 +8,7 @@
 <a href="login" >Log out</a>
 <a href="invoice" >Create Invoice</a>
 <a href="vendor" >Create Vendor</a>
+<a href="vendorList" >List of Vendors</a>
 
 <h1>List of Invoices</h1>
 
@@ -28,7 +29,6 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Iterate over the list of invoices -->
     <tr th:each="inv : ${invoices}">
         <td th:text="${inv.id}"></td>
         <td th:text="${inv.vendorName}"></td>

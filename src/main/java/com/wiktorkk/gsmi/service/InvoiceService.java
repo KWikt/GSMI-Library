@@ -2,9 +2,11 @@ package com.wiktorkk.gsmi.service;
 
 import com.wiktorkk.gsmi.dao.InvoiceDao;
 import com.wiktorkk.gsmi.model.Invoice;
+import com.wiktorkk.gsmi.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +33,17 @@ public class InvoiceService {
 
     public void deleteInvoice(long id) {
         invoiceDao.deleteById(id);
+    }
+
+    public List<Invoice> findAllInvoiceByVendorID(Long id) {
+        List<Invoice> invoices = invoiceDao.findAll();
+        List<Invoice> invoicesByVendor = new ArrayList<Invoice>();
+        for (Invoice invoice : invoices) {
+            if (invoice.getVendorID() == id) {
+                invoicesByVendor.add(invoice);
+            }
+        }
+        return invoicesByVendor;
     }
 
     public void updateInvoice(Long id, Invoice invoice) {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Vendors</title>
+</head>
+<body>
+<h1>Vendors List</h1>
+<a href="index" >Back</a>
+
+<table border="2">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Company Name</th>
+        <th>VAT Number</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Bank Account 1</th>
+        <th>Bank Account 2</th>
+        <th>Bank Account 3</th>
+        <th>Additional Information</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="vendor : ${vendors}">
+        <td th:text="${vendor.id}"></td>
+        <td th:text="${vendor.companyName}"></td>
+        <td th:text="${vendor.vatNumber}"></td>
+        <td th:text="${vendor.address}"></td>
+        <td th:text="${vendor.city}"></td>
+        <td th:text="${vendor.email}"></td>
+        <td th:text="${vendor.phone}"></td>
+        <td th:text="${vendor.bankAccount1}"></td>
+        <td th:text="${vendor.bankAccount2}"></td>
+        <td th:text="${vendor.bankAccount3}"></td>
+        <td th:text="${vendor.additionalInformation}"></td>
+        <td>
+            <a th:href="@{/vendor/updateVendor/{id} (id=${vendor.id})}">Update</a>
+        </td>
+        <td>
+            <a th:href="@{/vendor/delete/{id} (id=${vendor.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -6,10 +6,12 @@
 </head>
 <body>
 <h1>Invoice Creator</h1>
+<a href="index" >Back</a>
 <form action="/invoice" method="post">
+
     <label for="vendorName">Vendor:</label>
     <select id="vendorName" name="vendorName">
-        <option value="">-- Select a Vendor --</option>
+        <option value="Blank">-- Select a Vendor --</option>
         <th:block th:each="vendor : ${vendors}">
             <option th:value="${vendor}" th:text="${vendor}"></option>
         </th:block>
@@ -44,7 +46,7 @@
     <br>
 
     <label for="paymentDate">Payment Date:</label>
-    <input type="date" id="paymentDate" name="paymentDate">
+    <input type="date" id="paymentDate" name="paymentDate" required>
     <br>
 
     <label for="paymentStatus">Payment Status:</label>

@@ -30,6 +30,16 @@ public class VendorService {
         return vendors;
     }
 
+    public Long getVendorIDbyName(String name){
+        Long idVendor = null;
+        for (Vendor vendor : vendorDao.findAll()) {
+            if (vendor.getCompanyName().equals(name)) {
+                idVendor = vendor.getId();
+            }
+
+        }
+        return idVendor;
+    }
 
     public void saveVendor(Vendor vendor) {
         vendorDao.save(vendor);

@@ -19,7 +19,7 @@ public class InvoiceUpdateController {
     @Autowired
     private VendorService vendorService;
 
-    @GetMapping("/invoice/update/{id}")
+    @GetMapping("/invoice/updateInvoice/{id}")
     public String edit(@PathVariable long id, Model model) {
         Invoice invoice = invoiceService.getInvoice(id);
         List<String> vendorsName = vendorService.getVendorsName();
@@ -28,8 +28,9 @@ public class InvoiceUpdateController {
         return "updateInvoice";
     }
 
-    @PostMapping("/invoice/update/{id}")
+    @PostMapping("/invoice/updateInvoice/{id}")
     public String update(@PathVariable long id, @ModelAttribute("invoice") Invoice invoice) {
+        invoice.setVendorID(vendorService.getVendorIDbyName(invoice.getVendorName()));
         invoiceService.updateInvoice(id, invoice);
         return "redirect:/index";
     }

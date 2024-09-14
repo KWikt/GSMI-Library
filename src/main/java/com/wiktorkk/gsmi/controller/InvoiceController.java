@@ -31,6 +31,7 @@ public class InvoiceController {
 
     @PostMapping("/invoice")
     public String save(@ModelAttribute("invoice") Invoice invoice) {
+            invoice.setVendorID(vendorService.getVendorIDbyName(invoice.getVendorName()));
             invoiceService.save(invoice);
             return "redirect:index";
     }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Vendor</title>
+</head>
+<body>
+<h1>Create Vendor</h1>
+<a href="index">Back</a>
+
+<form th:action="@{/vendor/updateVendor/{id}(id=${vendor.id})}" th:object="${vendor}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="companyName">Company Name:</label>
+    <input type="text" id="companyName" th:field="*{companyName}" placeholder="Company Name" required />
+    <br><br>
+
+    <label for="vatNumber">VAT Number:</label>
+    <input type="text" id="vatNumber" th:field="*{vatNumber}" placeholder="VAT Number" required />
+    <br><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" th:field="*{address}" placeholder="Address" required />
+    <br><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" th:field="*{city}" placeholder="City" required />
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}" placeholder="Email" />
+    <br><br>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" th:field="*{phone}" placeholder="Phone Number" />
+    <br><br>
+
+    <label for="bankAccount1">Bank Account 1:</label>
+    <input type="text" id="bankAccount1" th:field="*{bankAccount1}" placeholder="Bank Account: 1" required />
+    <br><br>
+
+    <label for="bankAccount2">Bank Account 2:</label>
+    <input type="text" id="bankAccount2" th:field="*{bankAccount2}" placeholder="Bank Account: 2" />
+    <br><br>
+
+    <label for="bankAccount3">Bank Account 3:</label>
+    <input type="text" id="bankAccount3" th:field="*{bankAccount3}" placeholder="Bank Account: 3" />
+    <br><br>
+
+    <label for="additionalInformation">Additional Information:</label>
+    <textarea id="additionalInformation" th:field="*{additionalInformation}" placeholder="Additional Information" rows="4" cols="50"></textarea>
+    <br><br>
+
+    <input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>

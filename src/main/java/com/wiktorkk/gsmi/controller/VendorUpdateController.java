@@ -15,45 +15,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class VendorController {
+public class VendorUpdateController {
 
     @Autowired
-    private VendorService vendorService;
+    VendorService vendorService;
 
     @Autowired
-    private InvoiceService invoiceService;
+    InvoiceService invoiceService;
 
-    @GetMapping("/vendor")
-    public String start(Model model) {
-        Vendor vendor = new Vendor();
+    @GetMapping("/vendor/updateVendor/{id}")
+    public String start(@PathVariable long id, Model model) {
+        Vendor vendor = vendorService.getVendorById(id);
         model.addAttribute("vendor", vendor);
-        return "vendor";
+        return "updateVendor";
     }
 
-    @GetMapping("/vendorList")
-    public String vendorList(Model model) {
-        model.addAttribute("vendors", vendorService.getAllVendors());
-        return "vendorList";
-    }
-
-
-    @PostMapping("/vendor")
-    public String save(@ModelAttribute("vendor") Vendor vendor) {
-        vendorService.saveVendor(vendor);
-        return "redirect:/index";
-    }
-
-    // Pewne zaklamanie, nie moge zrobic DeleteMapping na samym htmlu
-    @GetMapping("/vendor/delete/{id}")
-    public String deleteVendor(@PathVariable long id) {
+    @PostMapping("/vendor/updateVendor/{id}")
+    public String update(@PathVariable long id, @ModelAttribute("vendor") Vendor vendor) {
         List<Invoice> invoices = invoiceService.findAllInvoiceByVendorID(id);
         if (!invoices.isEmpty()) {
             for (Invoice invoice : invoices) {
-                invoice.setVendorName("Blank");
+                invoice.setVendorName(vendor.getCompanyName());
             }
         }
-        vendorService.deleteVendor(id);
+        vendorService.updateVendor(id, vendor);
         return "redirect:/index";
     }
-
 }
