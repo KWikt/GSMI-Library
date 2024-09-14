@@ -7,7 +7,7 @@
 <body>
 <h1>Update Invoice</h1>
 <a href="/index" >Back</a>
-<a th:href="@{/invoice/delete/{id} (id=${inv.id})}">Delete Invoice</a>
+<a th:href="@{/invoice/delete/{id} (id=${invoice.id})}">Delete Invoice</a>
 
 
 <form th:action="@{/invoice/updateInvoice/{id}(id=${invoice.id})}" th:object="${invoice}" method="post">
@@ -15,7 +15,7 @@
 
     <label for="vendorName">Vendor:</label>
     <select id="vendorName" th:field="*{vendorName}">
-        <option value="">-- Select a Vendor --</option>
+        <option value="Blank">-- Select a Vendor --</option>
         <th:block th:each="vendor : ${vendors}">
             <option th:value="${vendor}" th:text="${vendor}"></option>
         </th:block>

@@ -1,6 +1,7 @@
 package com.wiktorkk.gsmi.service;
 
 import com.wiktorkk.gsmi.dao.VendorDao;
+import com.wiktorkk.gsmi.model.User;
 import com.wiktorkk.gsmi.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,26 @@ public class VendorService {
         return vendorDao.findAll();
     }
 
+    public List<Vendor> getAllVendorsByUserId(Long userId) {
+        List<Vendor> vendors = new ArrayList<>();
+        for (Vendor vendor : getAllVendors()) {
+            if (vendor.getUser().getId().equals(userId)) {
+                vendors.add(vendor);
+            }
+        }
+        return vendors;
+    }
+
     public Vendor getVendorById(long id) {
         return vendorDao.getReferenceById(id);
     }
 
-    public List<String> getVendorsName(){
+    public List<String> getVendorsName(User user){
         List<String> vendors = new ArrayList<>();
         for (Vendor vendor : vendorDao.findAll()) {
-            vendors.add(vendor.getCompanyName());
+            if (vendor.getUser().equals(user)) {
+                vendors.add(vendor.getCompanyName());
+            }
         }
         return vendors;
     }

@@ -3,6 +3,7 @@ package com.wiktorkk.gsmi.controller;
 
 import com.wiktorkk.gsmi.model.User;
 import com.wiktorkk.gsmi.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +26,14 @@ public class RegistrationController {
 
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute("user") User user) {
-        userService.save(user);
-        return "index";
+    public String registerUser(@ModelAttribute("user") User user, HttpSession session, Model model) {
+        if (userService.userExistingValidation(user.getUsername())){
+            model.addAttribute("error", "Invalid username, Please try different");
+            return "registration";
+        } else {
+            userService.save(user);
+            session.setAttribute("username", user.getUsername());
+            return "index";
+        }
     }
 }

@@ -22,6 +22,10 @@
     </div>
 
     <button type="submit" >Create Account</button>
+
+    <div th:if="${error}" role="alert">
+        <span th:text="${error}"></span>
+    </div>
 </form>
 </body>
 </html>

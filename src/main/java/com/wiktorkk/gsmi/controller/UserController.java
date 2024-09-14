@@ -2,6 +2,7 @@ package com.wiktorkk.gsmi.controller;
 
 import com.wiktorkk.gsmi.dto.LoginRequest;
 import com.wiktorkk.gsmi.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +17,19 @@ public class UserController {
     private UserService userService;
 
 
+
+
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("loginRequest", new LoginRequest());
         return "login";
     }
 
-
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginRequest loginRequest, Model model) {
+    public String login(@ModelAttribute LoginRequest loginRequest, Model model, HttpSession session) {
         if (userService.authenticate(loginRequest)) {
-            return "index";
+            session.setAttribute("username", loginRequest.getUsername());
+            return "redirect:index";
         } else {
             model.addAttribute("loginRequest", loginRequest);
             model.addAttribute("error", "Invalid username or password");

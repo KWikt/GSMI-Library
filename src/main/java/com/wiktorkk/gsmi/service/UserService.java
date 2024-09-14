@@ -13,8 +13,8 @@ public class UserService {
     private UserDao userDao;
 
 
-    public boolean findByEmail(String email) {
-        return userDao.findByEmail(email) != null;
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
     }
 
     public boolean authenticate(LoginRequest loginRequest) {
@@ -33,4 +33,12 @@ public class UserService {
     public void save(User user) {
         userDao.save(user);
     }
+
+    public boolean userExistingValidation(String username){
+        if (userDao.findByUsername(username) == null){
+            return false;
+        }
+        return true;
+    }
+
 }

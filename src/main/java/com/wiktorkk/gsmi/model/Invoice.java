@@ -25,6 +25,10 @@ public class Invoice {
 
     private Long VendorID;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Invoice() {
     }
 
@@ -42,6 +46,13 @@ public class Invoice {
         this.notes = notes;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getVendorID() {
         return VendorID;

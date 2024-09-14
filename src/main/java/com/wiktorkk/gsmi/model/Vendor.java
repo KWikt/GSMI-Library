@@ -22,6 +22,9 @@ public class Vendor {
     private String bankAccount3;
     private String additionalInformation;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Vendor() {
     }
@@ -38,6 +41,14 @@ public class Vendor {
         this.bankAccount2 = bankAccount2;
         this.bankAccount3 = bankAccount3;
         this.additionalInformation = additionalInformation;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
