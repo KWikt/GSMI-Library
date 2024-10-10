@@ -1,4 +1,3 @@
-Wiktor Krzywdzinski
 
 Nazwa projektu:
 GSMI Library
